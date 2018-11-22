@@ -28,26 +28,26 @@ class Document:
 print(Document.__doc__)
 
 
-def function_inicializathion_wood(tenn_wood, lengt_wood, wood, number_layer):     # кол-во элементов в слое, глубина дерева, массив, номер слоя
+def function_inicializathion_wood(tenn_wood, lengt_wood, wood, number_layer):   # кол-во элементов в слое, глубина дерева, массив, номер слоя
     tenni = 0
     print(tenn_wood, 'кол-лво элементов в слое')
     print('слой', number_layer)
-    if number_layer == lengt_wood:  # 1, 2, 3, 4 - при 4х слоях мы проходим от 1 до 2, от 2 до 3, от 3 до 4. В итоге получаем лишь 3 итерации
+    if number_layer == lengt_wood:                              # 1, 2, 3, 4 - при 4х слоях мы проходим от 1 до 2, от 2 до 3, от 3 до 4. В итоге получаем лишь 3 итерации
         return
     else:
         for i in range(tenn_wood):  # 1 2 4 8
             print()
             d = {}
-            parrent, child1, child2 = input().split()               #1) 16 11 9     2) 11 12 5    3) 9 10 8     4) 12 1 4     5) 5 7 -   6) 10 - -   7) 8 - -
-            if child1 == "-" and child2 == "-":                     # потомков нет
+            parrent, child1, child2 = input().split()                           #1) 16 11 9     2) 11 12 5    3) 9 10 8     4) 12 1 4     5) 5 7 -   6) 10 - -   7) 8 - -
+            if child1 == "-" and child2 == "-":                                 # потомков нет
                 tenni +=2
                 continue
-            elif child1 == "-":                                     # нет левого потомка
+            elif child1 == "-":                                                 # нет левого потомка
                 d[parrent] = [child2]
                 wood.append(d)
                 tenni += 1
                 continue
-            elif child2 == "-":                                     # нет праого потомка
+            elif child2 == "-":                                                 # нет праого потомка
                 d[parrent] = [child1]
                 wood.append(d)
                 tenni += 1
@@ -59,11 +59,11 @@ def function_inicializathion_wood(tenn_wood, lengt_wood, wood, number_layer):   
         number_layer+=1     # номер слоя
         function_inicializathion_wood(tenn_wood, lengt_wood, wood, number_layer)
 
-tenn = 1                                                    # кол-во элементов в слое (1,2,4,8)
-water_lengt = int(input("Введите глубину дерева:", ))       # глубина дерева
-mas_wood = []                                               # [{'16': ['11', '9']}, {'11': ['12', '5']}, {'9': ['10', '8']}, {'12': ['1', '4']}, {'5': ['7']}]
-number_layer_wood = 1                                       # номер слоя
-function_inicializathion_wood(tenn, water_lengt, mas_wood, number_layer_wood)         # функция инициализации массива mas_wood
+    tenn = 1                                                                    # кол-во элементов в слое (1,2,4,8)
+water_lengt = int(input("Введите глубину дерева:", ))                           # глубина дерева
+mas_wood = []                                                                   # [{'16': ['11', '9']}, {'11': ['12', '5']}, {'9': ['10', '8']}, {'12': ['1', '4']}, {'5': ['7']}]
+number_layer_wood = 1                                                           # номер слоя
+function_inicializathion_wood(tenn, water_lengt, mas_wood, number_layer_wood)   # функция инициализации массива mas_wood
 print('Предстовление бинарного дерева', mas_wood)
 
 
@@ -84,12 +84,12 @@ def initializathipn_A(mass, l, S):
     initializathipn_A(mass, l, S)
 
 A = []
-q = 0                                                           # индекс по которому будем идти по mas_wood
-initializathipn_A(mas_wood, q, A)                               # Инициализация массива A, в нем вершинами графа будут только len(mas_wood) элементов
+q = 0                                                                       # индекс по которому будем идти по mas_wood
+initializathipn_A(mas_wood, q, A)                                           # Инициализация массива A, в нем вершинами графа будут только len(mas_wood) элементов
 print("Массив А изначального дерева", A)
 
 
-def Heapify(N, i, y):                                           # при условии в вызове функции сыновья (хотябы один) будет в любом случае, i - 4,3,2,1,0, N - массив A, y один из элементов из массива mas_wood
+def Heapify(N, i, y):           # при условии в вызове функции сыновья (хотябы один) будет в любом случае, i - 4,3,2,1,0, N - массив A, y один из элементов из массива mas_wood
     b = 0
     for value in y.values():
         for u in value:
@@ -97,16 +97,16 @@ def Heapify(N, i, y):                                           # при усл�
 
     if b == 1:
         try:
-            left_son = N[2*i+1]                                 # возникает ошибка "left_son не существует"
+            left_son = N[2*i+1]                                             # возникает ошибка "left_son не существует"
         except IndexError:
-            if int(N[i]) < int(N[2*i+2]):                       # элемент родитель для right_son (right_son = N[2*i+2]) меньше чем сын
+            if int(N[i]) < int(N[2*i+2]):                                   # элемент родитель для right_son (right_son = N[2*i+2]) меньше чем сын
                 N[i], N[2*i+2] = N[2*i+2], N[i]
 
         try:
-            right_son = N[2*i+2]                                # возникает ошибка "right_son не существует"
+            right_son = N[2*i+2]                                            # возникает ошибка "right_son не существует"
         except IndexError:
-            if int(N[i]) < int(N[2*i+1]):                       # элемент родитель для left_son (left_son = N[2*i+1]) меньше чем сын
-                N[i], N[2*i+1] = N[2*i+1], N[i]                 #left_son = N[2*i+1]
+            if int(N[i]) < int(N[2*i+1]):                                   # элемент родитель для left_son (left_son = N[2*i+1]) меньше чем сын
+                N[i], N[2*i+1] = N[2*i+1], N[i]                             #left_son = N[2*i+1]
 
     if b == 2:
         left_son = N[2*i+1]
@@ -125,3 +125,27 @@ for t in range(int((len(A)-2)/2), -1, -1):            # Если t > N/2, где
 for t in range(0, int((len(A)-1)/2), +1):
     Heapify(A, t, mas_wood[t])
 print("A после пробразования", A)
+
+Restored_tree = {}
+
+for i in range(len(mas_wood)):
+    children=[]
+    children.append(A[(2*i)+1])
+    children.append(A[(2*i)+2])
+    #print(children)
+    Restored_tree[A[i]] = children
+
+print('Восстановленное дерево', Restored_tree)
+
+
+
+
+
+
+
+
+
+
+
+
+
