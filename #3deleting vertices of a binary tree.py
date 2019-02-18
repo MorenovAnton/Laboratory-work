@@ -31,7 +31,7 @@ class Document:
     https://habr.com/post/112222/  -                 Структуры данных: двоичная куча (binary heap)
 
     """
-print(Document.__doc__)
+#print(Document.__doc__)
 
 
 def function_inicializathion_wood(tenn_wood, lengt_wood, wood, number_layer):   # кол-во элементов в слое, глубина дерева, массив, номер слоя
